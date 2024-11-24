@@ -1,0 +1,116 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+  }
+  
+  /* Header Styling */
+  .header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  /* Main Content Styling */
+  .content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Blog Posts Section */
+  .posts h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .post-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .post-item:last-child {
+    border-bottom: none;
+  }
+  
+  .post-title {
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .post-title:hover {
+    color: #007BFF;
+  }
+  
+  .post-date {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  /* No Posts Message */
+  .no-posts {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* New Post Button */
+  .new-post-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-post-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Footer Styling */
+  .footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    margin-top: 20px;
+  }
+  
