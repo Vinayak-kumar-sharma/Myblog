@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router()
+const {marked} = require("marked")
 const Article = require('./../models/articles.js')
 
 
@@ -18,9 +19,21 @@ router.get("/", async (req,res)=>{
 })
 
 router.get("/post/:id", async (req,res)=>{
+  try {
     console.log(req.params.id)
     const post = await Article.findById(req.params.id);
-    res.render('post', { post });
+    if(!post){
+      return res.status(404).send("<h1>Post not found</h1>")
+    }
+    post.views+=1;
+    await post.save();
+    res.render('post', { post
+     });
+  } catch (error) {
+    res.status(500).send("<h2>Error fetching the post</h2>");
+  }
+
+    
 })
 
 router.get('/new', (req, res) => {
@@ -29,10 +42,13 @@ router.get('/new', (req, res) => {
   
 
 router.post("/new", async (req,res)=>{
-    const { title, description } = req.body;
+    const { title,description } = req.body;
+    // const description = marked(markdown);
     const newPost = new Article({
         title,
+        // markdown,
         description,
+        createdAt: new Date(),
     })
 
     await newPost.save()

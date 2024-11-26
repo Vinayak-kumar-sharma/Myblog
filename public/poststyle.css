@@ -14,27 +14,7 @@ body {
   padding: 0 16px;
 }
 
-/* Header Styling */
-.header {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #333;
-  color: white;
-}
-
-.header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.post-meta {
-  font-size: 1rem;
-  color: #ddd;
-}
-
-/* Main Content Styling */
-.content {
+.blog-content {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
@@ -43,16 +23,74 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.post {
-  padding: 20px;
+.blog-content p {
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+  color: #555;
 }
 
-.post-content {
+.blog-content h1, .blog-content h2, .blog-content h3 {
+  margin-top: 1.5em;
+  color: #333;
+}
+
+.blog-content ul, .blog-content ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  margin-bottom: 0.5em;
+}
+
+.blog-content a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
+/* Header Styling */
+/* .header {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #333;
+  color: white;
+} */
+
+/* .header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+} */
+
+/* .post-meta {
+  font-size: 1rem;
+  color: #ddd;
+} */
+
+/* Main Content Styling */
+/* .content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+/* .post {
+  padding: 20px;
+} */
+
+/* .post-content {
   font-size: 1.2rem;
   line-height: 1.8;
   text-align: justify;
   color: #555;
-}
+} */
 
 /* Back Button */
 .btn {

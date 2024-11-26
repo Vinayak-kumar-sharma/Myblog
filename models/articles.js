@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const marked = require("marked")
+
 const slugify = require("slugify")
 
 const articleSchema = new mongoose.Schema({
@@ -8,6 +8,7 @@ const articleSchema = new mongoose.Schema({
     // markdown: { type: String, required:true},
     createdAt: { type: Date, default:Date.now },
     // slug: { type:String, required:true, unique:true},
+    views:{ type: Number , default:0 },
 })
 
 // articleSchema.pre('validate',function(next){

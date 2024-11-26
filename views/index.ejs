@@ -17,7 +17,8 @@
         <% if (posts.length > 0) { %>
           <% posts.forEach(post => { %>
             <li class="post-item">
-              <a href="/post/<%= post._id %>" class="post-title"><%= post.title %></a>
+              <a href="/post/<%= post._id %>" class="post-title"><%= post.title %></a> - 
+              <%= post.views %> Views
               <span class="post-date"><%= post.createdAt.toDateString() %></span>
             </li>
           <% }) %>
