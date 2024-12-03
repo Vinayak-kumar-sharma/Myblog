@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Home</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <header class="header">
-    <h1>My Blog</h1>
-  </header>
-  <main class="content">
-    <section class="posts">
-      <h2>Blog Posts</h2>
-      <ul>
-        <% if (posts.length > 0) { %>
-          <% posts.forEach(post => { %>
-            <li class="post-item">
-              <a href="/post/<%= post._id %>" class="post-title"><%= post.title %></a> - 
-              <%= post.views %> Views
-              <span class="post-date"><%= post.createdAt.toDateString() %></span>
-            </li>
-          <% }) %>
-        <% } else { %>
-          <p class="no-posts">No blog posts available.</p>
-        <% } %>
-      </ul>
-    </section>
-    <a href="/new" class="new-post-btn">Create New Blog</a>
-  </main>
-  <footer class="footer">
-    <p>&copy; 2024 My Blog. All rights reserved.</p>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Home</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="main-content">
+      <div class="left-side">
+        <div class="header-content">
+          <h1 class="main-title">My Blogs</h1>
+          <a href="/newblog" class="create-btn">Create New Blog</a>
+        </div>
+      </div>
+      <div class="right-side">
+        <section class="posts">
+          <h2>Blog Posts</h2>
+          <ul>
+            <% if (posts.length > 0) { %>
+              <% posts.forEach(post => { %>
+                <li class="post-item">
+                  <a href="/<%= post.slug %>/blog" class="post-title"><%= post.title %></a>
+                  <p class="post-description"><%= post.description %></p>
+                  <span class="post-date"><%= post.createdAt.toDateString() %></span>
+                </li>
+              <% }) %>
+            <% } else { %>
+              <p class="no-posts">No blog posts available.</p>
+            <% } %>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>

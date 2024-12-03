@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router()
-const {marked} = require("marked")
 const Article = require('./../models/articles.js')
 
 
@@ -15,47 +14,55 @@ router.get("/", async (req,res)=>{
         res.status(500).send("internal server error...")
         
     }
-    
 })
+router.get("/newblog", (req, res) => {
+  res.render('new'); 
+});
 
-router.get("/post/:id", async (req,res)=>{
+router.get("/edit/:id/", async (req, res) => {
   try {
-    console.log(req.params.id)
     const post = await Article.findById(req.params.id);
-    if(!post){
-      return res.status(404).send("<h1>Post not found</h1>")
+    if (!post) {
+      return res.status(404).send('Post not found');
     }
-    post.views+=1;
-    await post.save();
-    res.render('post', { post
-     });
-  } catch (error) {
-    res.status(500).send("<h2>Error fetching the post</h2>");
+    res.render('edit', { post });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving the post');
   }
+});
 
-    
-})
+router.get("/:slug/blog", async (req,res)=>{
+    try {
+      console.log(req.params.slug)
+      const post = await Article.findOne({slug: req.params.slug });
+      if(!post){
+        return res.status(404).send("<h1>Post not found</h1>")
+      }
+      post.views+=1;
+      await post.save();
+      res.render('post', { post });
+    } catch (error) {
+      res.status(500).send("<h2>Error fetching the post</h2>");
+    }
+  })
 
-router.get('/new', (req, res) => {
-    res.render('new'); 
-  });
-  
 
-router.post("/new", async (req,res)=>{
-    const { title,description } = req.body;
-    // const description = marked(markdown);
+
+router.post("/newblog", async (req,res)=>{
+    const { title,description,markdown } = req.body;
     const newPost = new Article({
         title,
-        // markdown,
+        markdown,
         description,
         createdAt: new Date(),
     })
 
     await newPost.save()
-    res.status(200).redirect("/");
+    res.status(200).redirect(`/${newPost.slug}/blog`);
 })
 
-// DELETE Route
+// // DELETE Route
 
 router.delete('/post/:id', async (req, res) => {
     try {
@@ -67,64 +74,40 @@ router.delete('/post/:id', async (req, res) => {
     }
   });
 
-  // PUT Route
-// router.post('/post/:id/update', async (req, res) => {
-
-//     try {
-//         const{title,description} = req.body;
-
-//         if (!title || !description) {
-//             return res.status(400).send('Title and content are required.');
-//           }
-
-//        await Article.findByIdAndUpdate(
-//         req.params.id,
-//         { 
-//         title:title, 
-//         description:description, 
-//         },
-//         { new: true } // Return the updated document
-//       );
-//       res.redirect(`/post/${req.params.id}`);
-//     } 
-//     catch (err) {
-//       console.error(err);
-//       res.status(500).json({ error: 'Error updating the post' });
-//     }
-//   });
-  // GET Route for Edit Page
-router.get('/post/:id/edit', async (req, res) => {
-    try {
-      const post = await Article.findById(req.params.id);
-      if (!post) {
-        return res.status(404).send('Post not found');
-      }
-      res.render('edit', { post });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving the post');
-    }
-  });
+//   // GET Route for Edit Page
+// // router.get('/edit/:slug', async (req, res) => {
+// //     try {
+// //       const post = await Article.findOne({slug: req.params.slug});
+// //       if (!post) {
+// //         return res.status(404).send('Post not found');
+// //       }
+// //       res.render('edit', { post });
+// //     } catch (err) {
+// //       console.error(err);
+// //       res.status(500).send('Error retrieving the post');
+// //     }
+// //   });
   
 
-  router.put('/post/:id/', async (req, res) => {
+  router.put('/edit/:slug', async (req, res) => {
 
     try {
-        const{title,description} = req.body;
+        const{title,description,markdown} = req.body;
 
         if (!title || !description) {
             return res.status(400).send('Title and content are required.');
           }
-
-       await Article.findByIdAndUpdate(
-        req.params.id,
+       
+       await Article.updateOne(
+        {slug : req.params.slug},
         { 
         title:title, 
         description:description, 
+        markdown:markdown,
         },
         { new: true } // Return the updated document
       );
-      res.redirect(`/post/${req.params.id}`);
+      res.status(200).redirect(`/${req.params.slug}`);
     } 
     catch (err) {
       console.error(err);

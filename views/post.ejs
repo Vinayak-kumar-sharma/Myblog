@@ -21,20 +21,25 @@
       Published on <%= post.createdAt.toDateString() %> | 
       <span class="views"><%= post.views %> Views</span>
     </p>
+    <a href="/" class="btn back-btn">Back to Home</a>
+    <a href="/edit/<%= post._id %>/" class="btn btn-primary">Edit Post</a>
   </div>
   
   <main class="content">
     <article class="c">
-      <p class="post-content"><%= post.description %></p>
+      <p class="post-markdown"><%- post.sanotizedHtml %></p>
     </article>
   </main>
+
+
   <footer class="footer">
-    <a href="/" class="btn back-btn">Back to Home</a>
+    
     <form action="/post/<%= post._id %>?_method=DELETE" method="POST" style="display:inline;">
       <button type="submit" class="btn btn-danger">Delete</button>
     </form>
-    <a href="/post/<%= post._id %>/edit" class="btn btn-primary">Edit Post</a>
-
+    
   </footer>
+
+
 </body>
 </html>
