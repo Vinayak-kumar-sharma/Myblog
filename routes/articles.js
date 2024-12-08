@@ -89,7 +89,7 @@ router.delete('/post/:id', async (req, res) => {
 // //   });
   
 
-  router.put('/edit/:slug', async (req, res) => {
+  router.put("/edit/:slug", async (req, res) => {
 
     try {
         const{title,description,markdown} = req.body;
@@ -107,7 +107,7 @@ router.delete('/post/:id', async (req, res) => {
         },
         { new: true } // Return the updated document
       );
-      res.status(200).redirect(`/${req.params.slug}`);
+      res.status(200).redirect(`/${req.params.slug}/blog`);
     } 
     catch (err) {
       console.error(err);

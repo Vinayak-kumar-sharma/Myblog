@@ -7,39 +7,31 @@
   <link rel="stylesheet" href="/poststyle.css">
 </head>
 <body>
-  <!-- <header class="header">
-    <h1><%= post.title %></h1>
-    <p class="post-meta">
-      Published on <%= post.createdAt.toDateString() %> | 
-      <span class="views"><%= post.views %> Views</span>
-    </p>  
-  </header> -->
-
-  <div class="blog-content">
-    <h1><%= post.title %></h1>
+  <!-- Header Section -->
+  <header class="header">
+    <h1 class="post-title"><%= post.title %></h1>
     <p class="post-meta">
       Published on <%= post.createdAt.toDateString() %> | 
       <span class="views"><%= post.views %> Views</span>
     </p>
-    <a href="/" class="btn back-btn">Back to Home</a>
-    <a href="/edit/<%= post._id %>/" class="btn btn-primary">Edit Post</a>
-  </div>
-  
+    <nav class="navigation">
+      <a href="/" class="btn back-btn">Back to Home</a>
+      <a href="/edit/<%= post._id %>/" class="btn btn-primary">Edit Post</a>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
   <main class="content">
-    <article class="c">
+    <article class="post-content">
       <p class="post-markdown"><%- post.sanotizedHtml %></p>
     </article>
   </main>
 
-
+  <!-- Footer Section -->
   <footer class="footer">
-    
     <form action="/post/<%= post._id %>?_method=DELETE" method="POST" style="display:inline;">
       <button type="submit" class="btn btn-danger">Delete</button>
     </form>
-    
   </footer>
-
-
 </body>
 </html>
