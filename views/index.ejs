@@ -7,31 +7,44 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <main class="main-content">
-      <div class="left-side">
-        <div class="header-content">
-          <h1 class="main-title">My Blogs</h1>
-          <a href="/newblog" class="create-btn">Create New Blog</a>
-        </div>
+    <div class="header">
+      <header class="header-content">
+        <span class="logo-text">my Blogs</span>
+      </header>
+      <div class="button"> 
+        <a href="/newblog" class="create-btn">
+          Create
+        </a>
       </div>
-      <div class="right-side">
-        <section class="posts">
-          <h2>Blog Posts</h2>
+    </div>
+      <main class="main-content">
           <ul>
-            <% if (posts.length > 0) { %>
-              <% posts.forEach(post => { %>
-                <li class="post-item">
-                  <a href="/<%= post.slug %>/blog" class="post-title"><%= post.title %></a>
-                  <p class="post-description"><%= post.description %></p>
-                  <span class="post-date"><%= post.createdAt.toDateString() %></span>
-                </li>
-              <% }) %>
-            <% } else { %>
-              <p class="no-posts">No blog posts available.</p>
+            <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
+            <li class="post-item">
+              <!-- Title and Description wrapped in a container -->
+              <div class="post">
+                <div class="pic-container">
+                  <img src="/undraw_notebook_8ihb.svg" alt="image" class="pic" />
+                </div>
+                <div class="post-text">
+                  <a href="/<%= post.slug %>/blog" 
+                    class="post-title">
+                    <%= post.title %>
+                    </a>
+                  <p class="post-description">
+                    <%= post.description %>
+                  </p>
+                  <span 
+                  class="post-date">
+                    <%= post.createdAt.toDateString() %>
+                    </span>
+                </div>
+              </div>
+            </li>
+            <% }) %> <% } else { %>
+            <p class="no-posts">No blog posts available.</p>
             <% } %>
           </ul>
-        </section>
-      </div>
-    </main>
+      </main>
   </body>
 </html>
