@@ -34,7 +34,6 @@ router.get("/edit/:id/", async (req, res) => {
 
 router.get("/:slug/blog", async (req,res)=>{
     try {
-      console.log(req.params.slug)
       const post = await Article.findOne({slug: req.params.slug });
       if(!post){
         return res.status(404).send("<h1>Post not found</h1>")

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - Home</title>
+    <title>my Blog</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
@@ -24,7 +24,9 @@
               <!-- Title and Description wrapped in a container -->
               <div class="post">
                 <div class="pic-container">
-                  <img src="/undraw_notebook_8ihb.svg" alt="image" class="pic" />
+                  <a href="/<%= post.slug %>/blog" class="create-btn">
+                    Open
+                  </a>
                 </div>
                 <div class="post-text">
                   <a href="/<%= post.slug %>/blog" 
